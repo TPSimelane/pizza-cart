@@ -36,20 +36,23 @@ p{
 }
 
 button{
+margin: 0.25em;
 background-color: rgb(255, 231, 231);
-padding: 1.2em;
+padding: 1em;
 font-style: bold;
 font-weight: 1000;
-border-radius: 1em;
+border-radius: 0.5em;
+border-color: rgb(255, 147, 75);
 }
 
 button:hover{
 background-color: rgb(255, 179, 65);
-padding: 1.2em;
+padding: 1em;
 font-style: italic;
 font-weight: 1000;
 transition: 0.001s;
-border-color: rgb(255, 147, 75);
+border-radius: 0.5em;
+border-color: rgb(255, 255, 255);
 }
 
 table, th, td{
@@ -112,24 +115,24 @@ img:hover{
 .small_pizza{
 flex: 1;
  border: 2px;
- padding: 1em;
- margin: 1em;
+ padding: 0.8em;
+ margin: 0.8em;
  border-radius: 1.25em;
  background-color: rgb(255, 192, 153);
 }
 .medium_pizza{
  flex: 1;
  border: 2px;
- padding: 1em;
- margin: 1em;
+ padding: 0.8em;
+ margin: 0.8em;
  border-radius: 1.25em;
  background-color: rgb(160, 250, 135);
 }
 .large_pizza{
  flex: 1;
  border: 2px;
- padding: 1em;
- margin: 1em;
+ padding: 0.8em;
+ margin: 0.8em;
  border-radius: 1.25em;
  background-color: rgb(144, 237, 247);
 }
@@ -144,4 +147,8 @@ flex: 1;
  .pizzas{
  display: flex;
 }
+.table{
+  display: flex;
+}
+
 }

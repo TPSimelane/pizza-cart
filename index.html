@@ -75,8 +75,63 @@
         mPizzaQty: 0, 
         lPizzaTotal: 0.00, 
         lPizzaQty: 0,
-        cartTotal: 0.00
-         
+        payNow: false,
+        paymentAmount: 0.00,
+        paymentMessage:'',
+        buySPizza(){
+              this.sPizzaTotal += 58.99; 
+                this.sPizzaQty += 1  
+        },
+        clearSPizza(){
+            this.sPizzaTotal -= 58.99; 
+            this.sPizzaQty -= 1
+        },
+        buyMPizza(){
+            this.mPizzaTotal += 68.99; 
+            this.mPizzaQty += 1
+        },
+        clearMPizza(){
+            this.mPizzaTotal -= 68.99; 
+            this.mPizzaQty -= 1
+        },
+        buyLPizza(){
+            this.lPizzaTotal += 78.99; 
+            this.lPizzaQty += 1
+        },
+        clearLPizza(){
+            this.lPizzaTotal -= 78.99; 
+            this.lPizzaQty -= 1
+        },
+        cartTotal(){
+            return this.sPizzaTotal+ this.mPizzaTotal+ this.lPizzaTotal
+        },
+        cartQty(){
+            return this.sPizzaQty+ this.mPizzaQty+ this.lPizzaQty
+        },
+        makePayment(){
+            if(!this.paymentAmount){
+                this.paymentMessage='Please enter amount!'
+            }
+            if(this.paymentAmount >= this.cartTotal() ){
+                this.paymentMessage='Payment successfull!'
+                this.payNow=false;
+                setTimeout(() => {
+                   this.clearCart()
+                }, 2000)
+                 
+            }else{
+                this.paymentMessage='Payment failed!'
+            }
+        },
+        clearCart(){
+            this.sPizzaTotal= 0.00;
+            this.sPizzaQty= 0;
+            this.mPizzaTotal= 0.00; 
+            this.mPizzaQty= 0; 
+            this.lPizzaTotal= 0.00; 
+            this.lPizzaQty= 0;
+        }
+
         }">
 
 		<div class="header">
@@ -84,18 +139,13 @@
 				<h1>PERFECT PIZZA BAR</h1>
 			</div>
 			<div class="f1">
-				<!--<a href="" class="cart-link" x-on:click="showCart=true"> -->
-					
-					<button x-on:click="showCart=true" x-transition>
+				<!--<a href="" class="cart-link" x-on:click="showCart=true"> </a>-->
+					<button x-show="!showCart" x-on:click="showCart=true" x-transition>
                         <img src="shopping-cart.png" alt="shopping cart" width="20px" height="20px">
                         SHOW CART</button>
-                    <strong>R0.00</strong>
-				</a>
+                        <span><h2><strong x-show='cartQty()>0'><span x-text="cartQty()"></span> PIZZAS IN THE CART.</strong></h2></span>
 				<!-- <span>0.00</span> -->
-			</div>
-		</div>
-
-		<div class="cart-box">
+        <div class="cart-box">
 			<div class="cart" x-show="showCart" x-transition>
 				<div>
                     <button x-on:click="showCart=false">
@@ -109,64 +159,71 @@
 				</div>
 				
 				<table>
-					<tbody><tr>
+					<tbody>
+                    <tr x-show="sPizzaQty>0">
 						<td>Small Pizza</td>
 						<td>
-							<button x-on:click="BuySPizza" x-show="sPizzaQty>0">+</button>
-							<button x-on:click="ClearSPizza" x-show="sPizzaQty>0">-</button>
+							<button x-on:click="buySPizza" x-show='sPizzaQty>0'>+</button>
+							<button x-on:click="clearSPizza" x-show="sPizzaQty>0">-</button>
                             <span x-text="sPizzaQty"></span>
 						</td>
 						<td>
                             R <span x-text="sPizzaTotal.toFixed(2)"></span>
                         </td>
 					</tr>
-					<tr>
+					<tr x-show="mPizzaQty>0">
 						<td>Medium Pizza</td>
 						<td>
-							<button x-on:click="BuyMPizza" x-show="mPizzaQty>0">+</button>
-							<button x-on:click="ClearMPizza" x-show="mPizzaQty>0">-</button>
+							<button x-on:click="buyMPizza" x-show="mPizzaQty>0">+</button>
+							<button x-on:click="clearMPizza" x-show="mPizzaQty>0">-</button>
                             <span x-text="mPizzaQty"></span>
 						</td>
 						<td>
                             R <span x-text="mPizzaTotal.toFixed(2)"></span>
                         </td>
 					</tr>
-					<tr>
+					<tr x-show="lPizzaQty>0">
 						<td>Large Pizza</td>
 						<td>
-							<button x-on:click="BuyLPizza" x-show="lPizzaQty>0">+</button>
-							<button x-on:click="ClearLPizza" x-show="lPizzaQty>0">-</button>
+							<button x-on:click="buyLPizza" x-show="lPizzaQty>0">+</button>
+							<button x-on:click="clearLPizza" x-show="lPizzaQty>0">-</button>
                             <span x-text="lPizzaQty"></span>
 						</td>
 						<td >
                             R <span x-text="lPizzaTotal.toFixed(2)"></span>
                         </td>
 					</tr>
-					<tr>
+					<tr x-show="cartTotal()>0">
 						<td colspan="2">Total</td>
 						<td >
-                            R <span x-text="cartTotal.toFixed(2)"></span>
+                            R <span x-text="cartTotal().toFixed(2)"></span>
                         </td>
 					</tr>
 					<tr>
 						<td colspan="2">
-
-							<div class="message">Message...</div>
-							<div>
-								<label for="">Payment Amount</label>
-								<input class="input" type="number" placeholder="Payment Amount">
-							</div>
-
+                            <div x-show="payNow">
+                                <div class="message" x-text="paymentMessage"></div>
+							    <div>
+								    <label for="">Payment Amount = R <span x-text="paymentAmount"></span> </label>
+								    <input class="input" type="number" placeholder="Payment Amount" x-model="paymentAmount">
+                                    <button x-on:click="makePayment" class="btn"><img src="shopping-cart.png" alt="Shopping cart" width="20px" height="20px">PAY NOW</button>
+                                    
+                                </div>  
+                            </div>
+			
 						</td>
 						<td>
-							<button class="btn">
-								<img src="shopping-cart.png" alt="Shopping cart" width="20px" height="20px">
-								PAY</button>
+							<button x-show="!payNow" x-on:click="payNow=true" class= "btn"><img src="shopping-cart.png" alt="Shopping cart" width="20px" height="20px">PAY</button>
 						</td>
 					</tr>
 				</tbody></table>
 			</div>
 		</div>
+
+			</div>
+		</div>
+
+		
 
     <div class="container">
         <div class="pizzas">
