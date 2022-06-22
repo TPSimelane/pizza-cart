@@ -2,8 +2,19 @@ h1{
     text-align: center !important;
     padding: 1em;
     margin: 1em;
-    background-color: ;
+    background-color: whitesmoke;
+    border-radius: 1em;
 } 
+
+h1:hover{
+    text-align: center !important;
+    padding: 1em;
+    margin: 1em;
+    background-color: rgb(255, 251, 215);
+    border-radius: 1em;
+    text-shadow: 10em;
+} 
+
 body{
     background-color: rgb(255, 241, 147);
 }
@@ -27,14 +38,15 @@ p{
 button{
 background-color: rgb(255, 245, 245);
 padding: 1.2em;
-font-style: italic;
+font-style: bold;
 font-weight: 1000;
+border-radius: 1em;
 }
 
 button:hover{
 background-color: rgb(189, 189, 189);
 padding: 1.2em;
-font-style: bold;
+font-style: italic;
 font-weight: 1000;
 transition: 0.001s;
 border-color: rgb(255, 0, 0);
@@ -61,7 +73,7 @@ img:hover{
     margin: auto;
     display:block;
     align-content:center;
-    border-radius: 12em;
+    border-radius: 4em;
     image-resolution: 100px;
 }
 
@@ -71,7 +83,7 @@ img:hover{
   font-style: italic;
   font-weight: 100;
   border-color: rgb(255, 127, 180);
-  border radius:2em;
+  border-radius:2em;
 }
 .message:hover{
   background-color: rgb(255, 198, 148);
@@ -131,4 +143,5 @@ flex: 1;
 @media (min-width: 768px){
  .pizzas{
  display: flex;
+}
 }

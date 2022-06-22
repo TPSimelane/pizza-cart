@@ -66,7 +66,7 @@
 </head>
 
 <body>
-    <div >
+  <div >
     <div class="container" x-data="{
         showCart: false, 
         sPizzaTotal: 0.00, 
@@ -75,7 +75,9 @@
         mPizzaQty: 0, 
         lPizzaTotal: 0.00, 
         lPizzaQty: 0,
-        cartTotal: 0.00}">
+        cartTotal: 0.00
+         
+        }">
 
 		<div class="header">
 			<div class="f3">
@@ -110,8 +112,8 @@
 					<tbody><tr>
 						<td>Small Pizza</td>
 						<td>
-							<button>+</button>
-							<button>-</button>
+							<button x-on:click="BuySPizza" x-show="sPizzaQty>0">+</button>
+							<button x-on:click="ClearSPizza" x-show="sPizzaQty>0">-</button>
                             <span x-text="sPizzaQty"></span>
 						</td>
 						<td>
@@ -121,8 +123,8 @@
 					<tr>
 						<td>Medium Pizza</td>
 						<td>
-							<button>+</button>
-							<button>-</button>
+							<button x-on:click="BuyMPizza" x-show="mPizzaQty>0">+</button>
+							<button x-on:click="ClearMPizza" x-show="mPizzaQty>0">-</button>
                             <span x-text="mPizzaQty"></span>
 						</td>
 						<td>
@@ -132,8 +134,8 @@
 					<tr>
 						<td>Large Pizza</td>
 						<td>
-							<button>+</button>
-							<button>-</button>
+							<button x-on:click="BuyLPizza" x-show="lPizzaQty>0">+</button>
+							<button x-on:click="ClearLPizza" x-show="lPizzaQty>0">-</button>
                             <span x-text="lPizzaQty"></span>
 						</td>
 						<td >
@@ -164,12 +166,8 @@
 					</tr>
 				</tbody></table>
 			</div>
-
 		</div>
 
-		</div>
-	
-</div>
     <div class="container">
         <div class="pizzas">
             <div class="small_pizza">
@@ -208,6 +206,10 @@
             <p>ADDRESS: 1 Thick Crust Street, Tomato Town </p>
         </div>
     </div>
+
+		</div>
+    </div>
+    
 </div>
 </body>
 </html>
