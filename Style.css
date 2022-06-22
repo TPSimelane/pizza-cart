@@ -36,7 +36,7 @@ p{
 }
 
 button{
-background-color: rgb(255, 245, 245);
+background-color: rgb(255, 231, 231);
 padding: 1.2em;
 font-style: bold;
 font-weight: 1000;
@@ -44,12 +44,12 @@ border-radius: 1em;
 }
 
 button:hover{
-background-color: rgb(189, 189, 189);
+background-color: rgb(255, 179, 65);
 padding: 1.2em;
 font-style: italic;
 font-weight: 1000;
 transition: 0.001s;
-border-color: rgb(255, 0, 0);
+border-color: rgb(255, 147, 75);
 }
 
 table, th, td{
