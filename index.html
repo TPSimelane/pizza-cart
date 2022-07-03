@@ -156,7 +156,7 @@
                         </h2>
                     </div>
 				
-                    <table>
+                    <table x-show="cartQty()>0">
                         <tbody>
                             <tr x-show="sPizzaQty>0">
                                 <td>Small Pizza</td>
@@ -204,14 +204,12 @@
                                         <div>
                                             <label for="">Payment Amount = R <span x-text="paymentAmount"></span> </label>
                                             <input class="input" type="number" placeholder="Payment Amount" x-model="paymentAmount">
-                                            <button x-on:click="makePayment" class="btn"><img src="shopping-cart.png" alt="Shopping cart" width="20px" height="20px">PAY NOW</button>
-                                            
+                                            <button x-show='cartTotal()>0' x-on:click="makePayment" class="btn"><img src="shopping-cart.png" alt="Shopping cart" width="20px" height="20px">PAY NOW</button>                                            
                                         </div>  
-                                    </div>
-                    
+                                    </div>                    
                                 </td>
                                 <td>
-                                    <button x-show="!payNow" x-on:click="payNow=true" class= "btn"><img src="shopping-cart.png" alt="Shopping cart" width="20px" height="20px">PAY</button>
+                                    <button x-show='cartTotal()>0' x-show="!payNow" x-on:click="payNow=true" class= "btn"><img src="shopping-cart.png" alt="Shopping cart" width="20px" height="20px">PAY</button>
                                 </td>
                             </tr>
                         </tbody>
